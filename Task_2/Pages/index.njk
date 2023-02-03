@@ -1,0 +1,124 @@
+{# users with even id #}
+<div>
+  <h3>1. If Id is even print its respective name, username, email else print "I'm Odd"</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>
+            {% if user.id % 2 == 0 %}
+              <b>Name</b> : {{ user.name }} 
+              <b>Username</b> : {{user.username}} 
+              <b>Email</b> : {{ user.email }}
+            {% else %}
+              I'm Odd
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h3>2. Based on all id values get its respecive address keys and values and print them.</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>
+            <b>Street</b> : {{ user.address.street }}, 
+            <b>Suite</b> : {{ user.address.suite}}, 
+            <b>City</b> : {{  user.address.city }}, 
+            <b>Zipcode</b> : {{  user.address.zipcode }}, 
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h3>3. If any email ends with .biz print its name with email values.</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+          {% if user.email.endsWith('.biz') %}
+            <td>{{ user.name }}</td>  
+            <td>{{ user.email }}</td>
+          {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h3>4. If city contains any of following "Aliyaview", "Howemouth", Gwenborough print its respective cityname, zipcode, Geo with lat and lang values.</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>City</th>
+        <th>Zipcode</th>
+        <th>Geo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        {% if user.address.city == "Aliyaview" or user.address.city == "Howemouth" or user.address.city == "Gwenborough" %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.address.city }}</td>
+            <td>{{ user.address.zipcode }}</td>
+            <td>({{ user.address.geo.lat }}, {{ user.address.geo.lng }})</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+<div>
+  <h3>5. Print CatchPhrase which will contain max 15 letters.</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Catch Phrase</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.company.catchPhrase.substring(0, 15) }}...</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+</div>
